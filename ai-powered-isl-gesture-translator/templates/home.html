@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ISL Gesture Recognition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #74ebd5 0%, #acb6e5 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 25px 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 2.2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #0072ff, #00c6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        /* Info box with pop-up animation */
+        .info-box {
+            background: linear-gradient(145deg, #ffffff, #f8fbff);
+            padding: 18px;
+            border-radius: 16px;
+            width: 80%;
+            max-width: 450px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 5px solid transparent;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0.7);
+            animation: popUp 0.8s ease-out forwards 0.2s;
+        }
+        @keyframes popUp {
+            0% {
+                opacity: 0;
+                transform: scale(0.7) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            z-index: -1;
+            background: linear-gradient(45deg, 
+                #ff3366, 
+                #ff8c66, 
+                #66ccff);
+            background-size: 300% 300%;
+            border-radius: 20px;
+            animation: gradientBorder 6s ease infinite;
+        }
+        @keyframes gradientBorder {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .info-box img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            margin-bottom: 8px;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #f6d365, #fda085);
+            padding: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid white;
+        }
+        .info-box ul {
+            text-align: left;
+            padding-left: 0;
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.5;
+            list-style: none;
+            margin: 12px 0;
+        }
+        .info-box ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 28px;
+        }
+        .info-box ul li::before {
+            content: '👉';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.9rem;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+        }
+        .menu-container {
+            width: 80%;
+            max-width: 450px;
+        }
+        ul.menu {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        ul.menu li {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        ul.menu li:nth-child(1) { animation-delay: 0.4s; }
+        ul.menu li:nth-child(2) { animation-delay: 0.5s; }
+        ul.menu li:nth-child(3) { animation-delay: 0.6s; }
+        ul.menu li:nth-child(4) { animation-delay: 0.7s; }
+        ul.menu li:nth-child(5) { animation-delay: 0.8s; }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        ul.menu li:hover {
+            transform: translateY(-2px);
+            background-color: rgba(224, 247, 250, 0.95);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+            border-color: #66ccff;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .image-container {
+            width: 80%;
+            max-width: 450px;
+            height: 150px;
+            background-color: #ffffff;
+            margin-top: 25px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 3px solid #66ccff;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards 1s;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .image-container:hover img {
+            transform: scale(1.02);
+        }
+        
+        /* Custom cartoon image placeholder */
+        .cartoon-sign {
+            font-size: 80px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+    </style>
+</head>
+<body>
+    <h1>ISL Gesture Recognition</h1>
+
+    <!-- Info Box -->
+    <div class="info-box">
+        <!-- Custom cartoon-style placeholder (replace with actual image) -->
+        <div class="cartoon-sign">👐</div>
+        <ul>
+            <li>Visual language using gestures</li>
+            <li>Essential for deaf communication</li>
+            <li>Each gesture has specific meaning</li>
+            <li>Promotes inclusion and education</li>
+            <li>Real-time translation available</li>
+        </ul>
+    </div>
+
+    <!-- Vertical Menu Links -->
+    <div class="menu-container">
+        <ul class="menu">
+            <li><a href="/add_gesture">➕ Add Gesture</a></li>
+            <li><a href="/update_gesture">🔄 Update Gesture</a></li>
+            <li><a href="/list_gestures">📜 Gesture Library</a></li>
+            <li><a href="/delete_gesture">🗑️ Delete Gesture</a></li>
+            <li><a href="{{ url_for('recognize') }}">🎥 Live Recognition</a></li>
+        </ul>
+    </div>
+
+    <!-- Bottom Banner Image -->
+    <div class="image-container">
+        <img src="/static/isl3.png" alt="Sign Language Banner">
+    </div>
+</body>
+</html>

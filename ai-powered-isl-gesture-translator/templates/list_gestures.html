@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Gestures</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 90%;
+            max-width: 500px;
+            margin: 20px 0;
+        }
+        li {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        li:hover {
+            transform: scale(1.05);
+            background-color: #f0f8ff;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+        a:hover {
+            color: #00f2fe;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Gestures</h1>
+    <ul>
+        {% for gesture in gestures %}
+            <li>{{ gesture }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Menu</a>
+</body>
+</html>

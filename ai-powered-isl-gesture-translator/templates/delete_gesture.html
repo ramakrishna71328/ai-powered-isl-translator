@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Gesture</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #ff416c;
+            color: #fff;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff4b2b;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+        a:hover {
+            color: #ff4b2b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delete a Gesture</h1>
+    <form method="POST">
+        <label for="gesture_name">Gesture Name:</label>
+        <input type="text" name="gesture_name" id="gesture_name" required>
+        <button type="submit">Delete</button>
+    </form>
+    <a href="/">Back to Menu</a>
+</body>
+</html>

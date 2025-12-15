@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recognize Gesture</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #e4859b, #f3f185);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #ff416c;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff4b2b;
+            transform: scale(1.1);
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+        a:hover {
+            color: #ff4b2b;
+        }
+        .instructions {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            text-align: left;
+            font-size: 1rem;
+            margin-top: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .instructions h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ff416c;
+        }
+        .instructions ul {
+            padding-left: 20px;
+        }
+        .instructions ul li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gesture Recognition</h1>
+
+    <form action="{{ url_for('recognize') }}">
+        <button type="submit">Start Recognition</button>
+    </form>
+
+    <!-- Uncomment if needed -->
+    <!-- 
+    <form action="{{ url_for('speak_gesture') }}">
+        <button type="submit">Speak Gesture</button>
+    </form> 
+    -->
+
+    <a href="{{ url_for('home') }}">Back to Home</a>
+
+    <div class="instructions">
+        <h2>Instructions:</h2>
+        <ul>
+            <li>Make sure your webcam is working properly.</li>
+            <li>Show your gesture clearly inside the camera frame.</li>
+            <li>Ensure proper lighting for better recognition accuracy.</li>
+            <li>Hold the gesture steady for a few seconds.</li>
+            <li>Press 'S' to speak the gesture</li>
+            <li>Click "Start Recognition" to begin detecting your gesture.</li>
+        </ul>
+    </div>
+</body>
+</html>
